@@ -1,10 +1,12 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, HttpUrl
 
+from app.api.video import router as video_router
 from app.services.research import ResearchService
 
-app = FastAPI(title="GrowthPulse", version="0.1.0")
+app = FastAPI(title="GrowthPulse", version="0.2.0")
 research = ResearchService()
+app.include_router(video_router)
 
 
 class ResearchRequest(BaseModel):
