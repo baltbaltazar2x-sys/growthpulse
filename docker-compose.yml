@@ -1,0 +1,17 @@
+services:
+  growthpulse:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - pixelrag
+
+  # Integration point for a PixelRAG serve instance.
+  # Replace this image/command with the upstream PixelRAG deployment you choose.
+  pixelrag:
+    image: python:3.12-slim
+    command: ["python", "-c", "import time; print('PixelRAG placeholder: configure upstream server here'); time.sleep(1000000)"]
+    expose:
+      - "30001"
